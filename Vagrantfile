@@ -6,7 +6,9 @@ VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.provision "shell", path: "tools/install_puppet.sh"
-    config.vm.provision "shell", path: "tools/pre_setup.sh"
+    config.vm.provision "shell", path: "tools/bootstrap_puppet.sh"
+    config.vm.provision "shell", path: "tools/run_puppet.sh"
+
     if defined? VagrantPlugins::Cachier
     # Cache yum update files using vagrant-cachier, if installed
       config.cache.auto_detect = true
